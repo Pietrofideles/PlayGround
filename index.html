@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10131c">
+  <title>Shinobi: Vértice — Duelo dos Clãs</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="game" aria-label="Jogo de luta Shinobi: Vértice">
+    <canvas id="arena" aria-label="Arena de combate"></canvas>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Shinobi Vértice início"><span class="brand-mark">忍</span><span>SHINOBI<span class="brand-light">: VÉRTICE</span></span></a>
+      <div class="top-right"><span class="build-tag"><i></i> MODO LOCAL</span><button class="icon-btn" id="soundToggle" aria-label="Ativar ou desativar som">♫ <span>SOM</span></button></div>
+    </header>
+
+    <section class="screen screen-home active" id="homeScreen">
+      <div class="home-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> O CAMINHO DO NINJA COMEÇA AQUI</div>
+        <h1>SEU DESTINO<br>É <em>DECIDIDO</em><br>NO COMBATE.</h1>
+        <p class="lead">Entre na arena. Domine seu chakra.<br>Escreva sua própria lenda.</p>
+        <div class="home-actions"><button class="primary-btn" id="playBtn"><span>COMEÇAR JOGO</span><b>↗</b></button><button class="text-btn" id="rosterBtn">VER PERSONAGENS <span>→</span></button></div>
+        <div class="home-note"><span class="note-seal">印</span><span>50 NINJAS <b>·</b> 2 JOGÁVEIS<br><small>NARUTO & SASUKE ESTÃO PRONTOS</small></span></div>
+      </div>
+      <div class="hero-label"><span class="hero-line"></span><span>FOLHA OCULTA <b>—</b> CAMPO DE TREINO</span></div>
+      <div class="scroll-hint"><span>ROLE PARA EXPLORAR</span><i></i></div>
+    </section>
+
+    <section class="screen screen-select" id="selectScreen" aria-hidden="true">
+      <div class="select-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> ESCOLHA SEU CAMINHO</div><h2>SELEÇÃO <em>SHINOBI</em></h2></div><div class="roster-count"><b>02</b><span>/ 50<br>DISPONÍVEIS</span></div></div>
+      <div class="select-layout">
+        <div class="roster-panel"><div class="roster-toolbar"><span>ELENCO <b>50</b></span><span class="locked-key"><i>◆</i> BLOQUEADO</span></div><div class="roster-grid" id="rosterGrid" role="listbox" aria-label="Seleção de personagem"></div></div>
+        <aside class="fighter-card"><div class="card-top"><span id="fighterRole">JOGADOR 1</span><span class="ready-dot"><i></i> DISPONÍVEL</span></div><div class="portrait" id="portrait"><div class="portrait-ring"></div><span class="portrait-monogram" id="portraitMonogram">N</span><div class="portrait-sigil">忍</div></div><div class="fighter-meta"><div class="fighter-name-row"><div><small>PERSONAGEM SELECIONADO</small><h3 id="fighterName">NARUTO</h3></div><span class="fighter-number" id="fighterNumber">01</span></div><p id="fighterDesc">Determinação sem limites. O próximo Hokage nunca recua.</p><div class="stats" id="fighterStats"></div></div><button id="fightBtn" class="primary-btn fight-btn"><span>ENTRAR NA ARENA</span><b>↗</b></button><button class="back-btn" id="backBtn">← VOLTAR AO INÍCIO</button></aside>
+      </div>
+      <div class="select-footer"><span><b>↑ ↓ ← →</b> NAVEGAR <i>·</i> <b>ENTER</b> SELECIONAR</span><span>OS OUTROS 48 SHINOBI SERÃO DESBLOQUEADOS EM BREVE</span></div>
+    </section>
+
+    <section class="fight-ui" id="fightUI" aria-hidden="true">
+      <div class="fight-top"><div class="health-block player-health"><div class="health-label"><span id="pName">NARUTO</span><small>JOGADOR 1</small></div><div class="health-track"><i id="pHealth"></i></div><div class="chakra-track"><i id="pChakra"></i></div></div><div class="round-mark"><span>CAMPO DE TREINO</span><b id="timer">99</b><small>ROUND 01</small></div><div class="health-block enemy-health"><div class="health-label"><span>SASUKE</span><small>OPONENTE</small></div><div class="health-track"><i id="eHealth"></i></div><div class="chakra-track"><i id="eChakra"></i></div></div></div>
+      <div class="fight-message" id="fightMessage"><span>PREPARE-SE</span><b>3</b></div>
+      <div class="fight-bottom"><div class="fight-tip"><span class="tip-key">J</span><span>JUTSU</span><span class="tip-key">K</span><span>ATAQUE</span><span class="tip-key">L</span><span>INVESTIDA</span></div><button class="pause-btn" id="pauseBtn">Ⅱ <span>PAUSAR</span></button></div>
+      <div class="pause-overlay" id="pauseOverlay"><div class="pause-card"><small>CAMPO DE TREINO</small><h2>PAUSA</h2><button class="primary-btn" id="resumeBtn"><span>CONTINUAR</span><b>↗</b></button><button class="text-btn" id="quitBtn">VOLTAR AO MENU <span>→</span></button></div></div>
+      <div class="result-overlay" id="resultOverlay"><div class="result-card"><div class="eyebrow"><span class="eyebrow-line"></span> FIM DO COMBATE</div><h2 id="resultTitle">VITÓRIA!</h2><p id="resultText">Seu caminho ninja continua.</p><button class="primary-btn" id="rematchBtn"><span>REVANCHE</span><b>↗</b></button><button class="text-btn" id="resultMenuBtn">MENU PRINCIPAL <span>→</span></button></div></div>
+      <div class="touch-controls" id="touchControls"><div class="touch-pad"><button data-key="w">▲</button><button data-key="a">◀</button><button data-key="s">▼</button><button data-key="d">▶</button></div><div class="touch-actions"><button data-key="shift" class="touch-block">DEF</button><button data-key="l" class="touch-dash">↗</button><button data-key="k" class="touch-attack">GOLPE</button><button data-key="j" class="touch-jutsu">忍</button></div></div>
+    </section>
+    <footer class="site-footer"><span>SHINOBI: VÉRTICE <i>©</i> 2026</span><span>UM DUELO FEITO DE CORAGEM <b>·</b> E CHAKRA</span></footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
