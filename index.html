@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Raiz Velha — A Floresta</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <section id="start" class="screen">
+    <div class="start-card">
+      <div class="seal">RV</div>
+      <p class="kicker">UM CONTO DA FLORESTA SOMBRIA</p>
+      <h1>RAIZ<br><em>VELHA</em></h1>
+      <p class="intro">Você é um leiador solitário. As árvores começaram a andar — e a floresta que lhe deu lar agora implora por um guardião.</p>
+      <button id="play" class="primary">ENTRAR NA FLORESTA</button>
+      <div class="controls"><span>WASD · Movimento</span><span>MOUSE · Mirar</span><span>CLIQUE · Machadada</span></div>
+    </div>
+  </section>
+
+  <div id="hud">
+    <div class="hud-left">
+      <div class="portrait"><span id="portraitIcon">🪓</span></div>
+      <div class="bars">
+        <div class="name">LEIADOR <span id="level">LV. 1</span></div>
+        <div class="bar"><div id="health" class="fill health"></div></div>
+        <div class="bar slim"><div id="stamina" class="fill stamina"></div></div>
+      </div>
+    </div>
+    <div class="quest">
+      <span>MISSÃO ATIVA</span>
+      <strong id="questTitle">Purifique a Floresta</strong>
+      <div id="questText">Monstros derrotados <b>0 / 12</b></div>
+    </div>
+    <div class="hud-right">
+      <div class="relic"><span>✦</span><b id="wood">0</b></div>
+      <div class="relic"><span>⚑</span><b id="kills">0</b></div>
+    </div>
+  </div>
+
+  <div id="crosshair"><span></span></div>
+  <div id="damage"></div>
+  <div id="toast"></div>
+
+  <div id="mobile">
+    <div id="stick"><div id="stickKnob"></div></div>
+    <button id="hit" class="mobileHit">🪓</button>
+  </div>
+
+  <section id="gameOver" class="screen hidden">
+    <div class="start-card small">
+      <p class="kicker">A FLORESTA TE CHAMOU</p>
+      <h2>Você caiu</h2>
+      <button id="retry" class="primary">RECOMEÇAR</button>
+    </div>
+  </section>
+
+  <script src="game.js"></script>
+</body>
+</html>
