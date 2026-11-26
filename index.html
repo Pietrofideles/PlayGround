@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#0b1019" />
+  <title>Shinobi: Eclipse Arena</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app">
+    <canvas id="game-canvas" aria-label="Arena 3D"></canvas>
+    <div class="grain"></div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Shinobi Eclipse"><span class="brand-mark">忍</span><span>SHINOBI <b>／</b> ECLIPSE</span></a>
+      <div class="top-right"><span class="online-dot"></span><span>ARENA LOCAL</span><button class="icon-btn" id="settings-open" title="Configurações">⚙</button><button class="icon-btn" id="sound-toggle" title="Som">♫</button></div>
+    </header>
+
+    <section class="screen active" id="home-screen">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> O CAMINHO DO SHINOBI COMEÇA AQUI</p>
+        <h1>FORJE SEU<br /><em>DESTINO.</em></h1>
+        <p class="hero-sub">Entre na arena. Domine seu chakra.<br />Escreva sua própria lenda.</p>
+        <div class="hero-actions"><button class="primary-btn" id="start-btn">ENTRAR NA ARENA <span>↗</span></button><button class="text-btn" id="how-btn">COMO JOGAR <span>→</span></button></div>
+        <div class="hero-foot"><span class="line"></span><span>01 — 03</span><span class="muted">A LENDA É SUA</span></div>
+      </div>
+      <div class="hero-art-label"><span class="vertical">木ノ葉隠れ</span><div><b>VONTADE DO FOGO</b><small>UMA NOVA GERAÇÃO DE SHINOBI</small></div></div>
+      <div class="version">EDIÇÃO DE FÃ · ARENA 01</div>
+    </section>
+
+    <section class="screen" id="select-screen">
+      <div class="screen-heading"><button class="back-btn" data-back="home-screen">← VOLTAR</button><div><p class="eyebrow">SELEÇÃO DE PERSONAGEM</p><h2>ESCOLHA SEU <em>SHINOBI</em></h2></div><div class="roster-count"><b>02</b><span>DISPONÍVEIS<br />DE 52</span></div></div>
+      <div class="select-layout">
+        <div class="fighter-grid" id="fighter-grid"></div>
+        <aside class="fighter-panel"><div class="panel-kicker">PERSONAGEM SELECIONADO</div><div class="fighter-portrait" id="fighter-portrait"><span>影</span></div><div class="fighter-name" id="fighter-name">NARUTO</div><div class="fighter-sub" id="fighter-sub">O NINJA QUE NUNCA DESISTE</div><div class="stats" id="fighter-stats"></div><p class="fighter-desc" id="fighter-desc"></p><button class="primary-btn wide" id="fight-btn">CONFIRMAR E LUTAR <span>↗</span></button></aside>
+      </div>
+      <div class="locked-note"><span>🔒</span> 50 shinobi ainda não despertaram. Fique de olho nas próximas atualizações.</div>
+    </section>
+
+    <section class="screen" id="settings-screen">
+      <div class="settings-card"><button class="back-btn" data-back="home-screen">← VOLTAR</button><p class="eyebrow">AJUSTE SUA JORNADA</p><h2>CONFIGURAÇÕES</h2><div class="setting-row"><div><b>VOLUME GERAL</b><small>Ajuste o som da arena</small></div><input id="volume-range" type="range" min="0" max="100" value="45"><span id="volume-value">45%</span></div><div class="setting-row"><div><b>VELOCIDADE DA CÂMERA</b><small>Suavidade ao acompanhar a luta</small></div><input id="camera-range" type="range" min="1" max="10" value="5"><span id="camera-value">5</span></div><div class="setting-row"><div><b>EFEITOS DE PARTÍCULAS</b><small>Impactos e chakra visual</small></div><button class="toggle on" id="effects-toggle"><span></span><i>ATIVADO</i></button></div><div class="setting-row"><div><b>CONTROLES</b><small>Teclado e controles de toque</small></div><span class="control-preview">WASD · J K L · ESPAÇO</span></div><button class="primary-btn wide" id="settings-done">SALVAR CONFIGURAÇÕES <span>✓</span></button></div>
+    </section>
+
+    <section class="screen" id="help-screen"><div class="help-card"><button class="back-btn" data-back="home-screen">← VOLTAR</button><p class="eyebrow">DOMINE A ARENA</p><h2>COMO <em>JOGAR</em></h2><div class="help-controls"><div><kbd>W A S D</kbd><span>Mover-se pela arena</span></div><div><kbd>J</kbd><span>Ataque rápido</span></div><div><kbd>K</kbd><span>Jutsu especial</span></div><div><kbd>L</kbd><span>Investida</span></div><div><kbd>ESPAÇO</kbd><span>Defender</span></div><div><kbd>SHIFT</kbd><span>Carregar chakra</span></div></div><p class="help-tip">Dica: use a investida para encurtar distância e o jutsu quando sua barra de chakra estiver cheia.</p><button class="primary-btn" id="help-play">ENTENDI, VAMOS LUTAR <span>↗</span></button></div></section>
+
+    <section class="screen" id="battle-screen" aria-label="Combate">
+      <div class="battle-hud"><div class="hud-player"><div class="hud-name"><span id="player-hud-name">NARUTO</span><b>1P</b></div><div class="health-track"><span id="player-health"></span></div><div class="chakra-track"><span id="player-chakra"></span></div></div><div class="battle-center"><div class="round-label">CAMPO DE BATALHA · FLORESTA</div><div class="timer" id="timer">99</div><div class="round-label small">MELHOR DE 1</div></div><div class="hud-player enemy-hud"><div class="hud-name"><b>CPU</b><span id="enemy-hud-name">SASUKE</span></div><div class="health-track"><span id="enemy-health"></span></div><div class="chakra-track"><span id="enemy-chakra"></span></div></div></div>
+      <div class="battle-bottom"><div class="move-callout" id="move-callout">PREPARADO PARA LUTAR</div><div class="battle-hint">WASD mover <i>·</i> J atacar <i>·</i> K jutsu <i>·</i> L investida <i>·</i> ESPAÇO defender</div><button class="pause-btn" id="pause-btn">Ⅱ</button></div>
+      <div class="touch-controls" id="touch-controls"><div class="touch-pad"><button data-key="w">▲</button><div><button data-key="a">◀</button><button data-key="s">▼</button><button data-key="d">▶</button></div></div><div class="touch-actions"><button data-key="j">J</button><button data-key="k">K</button><button data-key="l">L</button><button data-key="space">◉</button></div></div>
+      <div class="battle-overlay" id="battle-overlay"><div class="result-card"><p class="eyebrow" id="result-eyebrow">PAUSA</p><h2 id="result-title">LUTA PAUSADA</h2><p id="result-copy">Respire fundo, shinobi.</p><button class="primary-btn" id="resume-btn">CONTINUAR <span>→</span></button><button class="text-btn" id="exit-btn">VOLTAR AO MENU</button></div></div>
+    </section>
+    <div class="toast" id="toast"></div>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
